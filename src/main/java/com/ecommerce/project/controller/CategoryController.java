@@ -41,7 +41,7 @@ public class CategoryController {
             return  new ResponseEntity<>(e.getReason(),e.getStatusCode());
         }
     }
-    
+
     @DeleteMapping("/api/admin/categories/{categoryId}")
     public ResponseEntity<String> deleteCategory(@PathVariable Long categoryId){
         try {
