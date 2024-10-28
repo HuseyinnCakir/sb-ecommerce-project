@@ -100,7 +100,7 @@ public class ProductServiceImpl implements ProductService {
         Page<Product> productPage = productRepository.findByCategorySortByPriceAsc(category,pageDetails);
         List<Product> products = productPage.getContent();
         if(products.size() ==0){
-            throw new APIException(category.getCategoryName() + " category does not have any products: " + keyword);
+            throw new APIException(category.getCategoryName() + " category does not have any products: " + category.getCategoryName());
         }
 
         List<ProductDTO> productDTOS = products.stream()
