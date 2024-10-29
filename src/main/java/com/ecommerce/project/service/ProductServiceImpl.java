@@ -97,7 +97,7 @@ public class ProductServiceImpl implements ProductService {
                 : Sort.by(sortBy).descending();
 
         Pageable pageDetails = PageRequest.of(pageNumber,pageSize,sortByAndOrder);
-        Page<Product> productPage = productRepository.findByCategorySortByPriceAsc(category,pageDetails);
+        Page<Product> productPage = productRepository.findByCategoryOrderByPriceAsc(category,pageDetails);
         List<Product> products = productPage.getContent();
         if(products.size() ==0){
             throw new APIException(category.getCategoryName() + " category does not have any products: " + category.getCategoryName());
@@ -123,7 +123,7 @@ public class ProductServiceImpl implements ProductService {
                 : Sort.by(sortBy).descending();
 
         Pageable pageDetails = PageRequest.of(pageNumber,pageSize,sortByAndOrder);
-        Page<Product> productPage = productRepository.findByCategoryNameLikeIgnoreCase('%' + keyword +'%',pageDetails);
+        Page<Product> productPage = productRepository.findByProductNameLikeIgnoreCase('%' + keyword +'%',pageDetails);
         List<Product> products = productPage.getContent();
         List<ProductDTO> productDTOS = products.stream()
                 .map(product -> modelMapper.map(product,ProductDTO.class))

@@ -16,7 +16,7 @@ import java.util.Set;
 @NoArgsConstructor
 @Table(name = "users",
         uniqueConstraints = {
-        @UniqueConstraint(columnNames = "userName"),
+        @UniqueConstraint(columnNames = "username"),
                 @UniqueConstraint(columnNames = "email")
         })
 public class User {
@@ -60,5 +60,5 @@ public class User {
     }
     @ToString.Exclude
     @OneToMany(mappedBy = "user", cascade = {CascadeType.PERSIST, CascadeType.MERGE},orphanRemoval = true)
-    private Set<Product> products = new HashSet<>();
+    private Set<Product> products;
 }
