@@ -59,6 +59,10 @@ public class User {
         this.roles = roles;
     }
     @ToString.Exclude
+    @OneToOne(mappedBy = "cart",cascade = {CascadeType.PERSIST,CascadeType.MERGE,CascadeType.REMOVE})
+    private Cart cart;
+
+    @ToString.Exclude
     @OneToMany(mappedBy = "user", cascade = {CascadeType.PERSIST, CascadeType.MERGE},orphanRemoval = true)
     private Set<Product> products;
 }
